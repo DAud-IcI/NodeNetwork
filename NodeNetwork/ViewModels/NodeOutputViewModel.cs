@@ -30,7 +30,7 @@ namespace NodeNetwork.ViewModels
         public NodeOutputViewModel()
         {
             MaxConnections = Int32.MaxValue;
-            this.PortPosition = PortPosition.Right;
+            PortPosition = PortPosition.Right;
         }
 
         /// <summary>

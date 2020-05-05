@@ -23,8 +23,8 @@ namespace NodeNetwork
 
         protected ValidationResult(bool isValid, object messageViewModel)
         {
-            this.IsValid = isValid;
-            this.MessageViewModel = messageViewModel;
+            IsValid = isValid;
+            MessageViewModel = messageViewModel;
         }
     }
 

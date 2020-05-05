@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Layout;
+using Avalonia.Media;
+using Avalonia.Styling;
 using DynamicData;
-using DynamicData.Binding;
 using NodeNetwork.Utilities;
 using NodeNetwork.ViewModels;
 using NodeNetwork.Views.Controls;
 using ReactiveUI;
 using Splat;
+using System;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace NodeNetwork.Views
 {
@@ -49,8 +39,8 @@ namespace NodeNetwork.Views
         #endregion
 
         #region ViewModel
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(nameof(ViewModel),
-            typeof(NodeViewModel), typeof(NodeView), new PropertyMetadata(null));
+        public static readonly AvaloniaProperty ViewModelProperty = AvaloniaProperty.Register(nameof(ViewModel),
+            typeof(NodeViewModel), typeof(NodeView), new PropertyMetadata(default));
 
         public NodeViewModel ViewModel
         {
@@ -66,42 +56,42 @@ namespace NodeNetwork.Views
         #endregion
 
         #region Properties
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(NodeView));
+        public static readonly AvaloniaProperty CornerRadiusProperty = AvaloniaProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(NodeView));
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
-        public static readonly DependencyProperty ArrowSizeProperty = DependencyProperty.Register(nameof(ArrowSize), typeof(double), typeof(NodeView));
+        public static readonly AvaloniaProperty ArrowSizeProperty = AvaloniaProperty.Register(nameof(ArrowSize), typeof(double), typeof(NodeView));
         public double ArrowSize
         {
             get => (double)GetValue(ArrowSizeProperty);
             set => SetValue(ArrowSizeProperty, value);
         }
 
-        public static readonly DependencyProperty TitleFontFamilyProperty = DependencyProperty.Register(nameof(TitleFontFamily), typeof(FontFamily), typeof(NodeView));
+        public static readonly AvaloniaProperty TitleFontFamilyProperty = AvaloniaProperty.Register(nameof(TitleFontFamily), typeof(FontFamily), typeof(NodeView));
         public FontFamily TitleFontFamily
         {
             get => (FontFamily)GetValue(TitleFontFamilyProperty);
             set => SetValue(TitleFontFamilyProperty, value);
         }
 
-        public static readonly DependencyProperty TitleFontSizeProperty = DependencyProperty.Register(nameof(TitleFontSize), typeof(double), typeof(NodeView));
+        public static readonly AvaloniaProperty TitleFontSizeProperty = AvaloniaProperty.Register(nameof(TitleFontSize), typeof(double), typeof(NodeView));
         public double TitleFontSize
         {
             get => (double)GetValue(TitleFontSizeProperty);
             set => SetValue(TitleFontSizeProperty, value);
         }
 
-        public static readonly DependencyProperty EndpointsStackingOrientationProperty = DependencyProperty.Register(nameof(EndpointsStackingOrientation), typeof(Orientation), typeof(NodeView));
+        public static readonly AvaloniaProperty EndpointsStackingOrientationProperty = AvaloniaProperty.Register(nameof(EndpointsStackingOrientation), typeof(Orientation), typeof(NodeView));
         public Orientation EndpointsStackingOrientation
         {
             get => (Orientation)GetValue(EndpointsStackingOrientationProperty);
             set => SetValue(EndpointsStackingOrientationProperty, value);
         }
 
-        public static readonly DependencyProperty LeadingControlPresenterStyleProperty = DependencyProperty.Register(nameof(LeadingControlPresenterStyle), typeof(Style), typeof(NodeView));
+        public static readonly AvaloniaProperty LeadingControlPresenterStyleProperty = AvaloniaProperty.Register(nameof(LeadingControlPresenterStyle), typeof(Style), typeof(NodeView));
         public Style LeadingControlPresenterStyle
         {
 	        get => (Style)GetValue(LeadingControlPresenterStyleProperty);

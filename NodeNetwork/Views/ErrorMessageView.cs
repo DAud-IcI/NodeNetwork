@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using NodeNetwork.ViewModels;
 using ReactiveUI;
+using System.Reactive.Disposables;
 
 namespace NodeNetwork.Views
 {
@@ -15,8 +10,8 @@ namespace NodeNetwork.Views
     public class ErrorMessageView : Control, IViewFor<ErrorMessageViewModel>
     {
         #region ViewModel
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(nameof(ViewModel),
-            typeof(ErrorMessageViewModel), typeof(ErrorMessageView), new PropertyMetadata(null));
+        public static readonly AvaloniaProperty ViewModelProperty = AvaloniaProperty.Register(nameof(ViewModel),
+            typeof(ErrorMessageViewModel), typeof(ErrorMessageView), new PropertyMetadata(default));
 
         public ErrorMessageViewModel ViewModel
         {

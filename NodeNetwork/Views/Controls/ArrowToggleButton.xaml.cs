@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls.Primitives;
+﻿using Avalonia.Controls.Primitives;
+using Avalonia.Markup.Xaml;
 
 namespace NodeNetwork.Views.Controls
 {
@@ -7,6 +8,11 @@ namespace NodeNetwork.Views.Controls
         public ArrowToggleButton()
         {
             InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
         }
     }
 }

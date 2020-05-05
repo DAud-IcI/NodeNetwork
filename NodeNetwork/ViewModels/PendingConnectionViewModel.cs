@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Avalonia;
 using NodeNetwork.Views;
 using ReactiveUI;
 

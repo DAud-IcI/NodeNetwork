@@ -1,34 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using DynamicData;
 using NodeNetwork.Utilities;
 using NodeNetwork.ViewModels;
 using NodeNetwork.Views.Controls;
 using ReactiveUI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace NodeNetwork.Views
 {
     public partial class NetworkView : IViewFor<NetworkViewModel>
     {
         #region ViewModel
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(nameof(ViewModel),
-            typeof(NetworkViewModel), typeof(NetworkView), new PropertyMetadata(null));
+        public static readonly AvaloniaProperty ViewModelProperty = AvaloniaProperty.Register(nameof(ViewModel),
+            typeof(NetworkViewModel), typeof(NetworkView), new PropertyMetadata(default));
 
         public NetworkViewModel ViewModel
         {
@@ -126,8 +119,8 @@ namespace NodeNetwork.Views
         #endregion
 
         #region NetworkBackground
-        public static readonly DependencyProperty NetworkBackgroundProperty = DependencyProperty.Register(nameof(NetworkBackground),
-            typeof(Brush), typeof(NetworkView), new PropertyMetadata(null));
+        public static readonly AvaloniaProperty NetworkBackgroundProperty = AvaloniaProperty.Register(nameof(NetworkBackground),
+            typeof(Brush), typeof(NetworkView), new PropertyMetadata(default));
 
         public Brush NetworkBackground
         {
@@ -160,6 +153,11 @@ namespace NodeNetwork.Views
             SetupErrorMessages();
             SetupDragAndDrop();
             SetupSelectionRectangle();
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
         }
 
         #region Setup
@@ -331,14 +329,13 @@ namespace NodeNetwork.Views
                 this.Events().Drop.Subscribe(e =>
                 {
                     object data = e.Data.GetData("nodeVM");
-                    NodeViewModel newNodeVm = data as NodeViewModel;
-                    if (newNodeVm != null)
+                    if (data is NodeViewModel newNodeVm)
                     {
-                        this.ViewModel.PendingNode =
+                        ViewModel.PendingNode =
                             new NodeViewModel(); //Fixes issue with newNodeVm sticking around in pendingNodeView, messing up position updates
-                        this.ViewModel.PendingNode = null;
+                        ViewModel.PendingNode = null;
                         newNodeVm.Position = e.GetPosition(contentContainer);
-                        this.ViewModel.Nodes.Add(newNodeVm);
+                        ViewModel.Nodes.Add(newNodeVm);
                     }
                 }).DisposeWith(d);
 
@@ -484,7 +481,7 @@ namespace NodeNetwork.Views
         }
         #endregion
 
-        private void OnClickCanvas(object sender, MouseButtonEventArgs e)
+        private void OnClickCanvas(object sender, EventArgs e)
         {
             ViewModel.ClearSelection();
         }

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Avalonia.Controls;
+using NodeNetwork.ViewModels;
+using ReactiveUI;
+using System;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using NodeNetwork.ViewModels;
-using ReactiveUI;
 
 namespace NodeNetwork.Views
 {

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using System;
 
 namespace NodeNetwork.Views.Controls
 {
@@ -242,7 +235,7 @@ namespace NodeNetwork.Views.Controls
 
         private void ApplyZoomToChildren(ZoomEventArgs e)
         {
-            foreach (UIElement cur in this.Children)
+            foreach (UIElement cur in Children)
             {
                 cur.RenderTransform = e.NewScale;
                 Canvas.SetLeft(cur, e.ContentOffset.X);
@@ -260,9 +253,9 @@ namespace NodeNetwork.Views.Controls
 
         public DragMoveEventArgs(MouseEventArgs mouseEvent, double deltaX, double deltaY)
         {
-            this.MouseEvent = mouseEvent;
-            this.DeltaX = deltaX;
-            this.DeltaY = deltaY;
+            MouseEvent = mouseEvent;
+            DeltaX = deltaX;
+            DeltaY = deltaY;
         }
     }
 
@@ -275,10 +268,10 @@ namespace NodeNetwork.Views.Controls
 
         public ZoomEventArgs(MouseEventArgs e, ScaleTransform oldScale, ScaleTransform newScale, Point contentOffset)
         {
-            this.MouseEvent = e;
-            this.OldScaleScale = oldScale;
-            this.NewScale = newScale;
-            this.ContentOffset = contentOffset;
+            MouseEvent = e;
+            OldScaleScale = oldScale;
+            NewScale = newScale;
+            ContentOffset = contentOffset;
         }
     }
 }

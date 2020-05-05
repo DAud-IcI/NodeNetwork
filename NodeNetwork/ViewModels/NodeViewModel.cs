@@ -9,6 +9,8 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Avalonia;
+using Avalonia.Media.Imaging;
 using DynamicData;
 using NodeNetwork.Views;
 using ReactiveUI;
@@ -164,8 +166,8 @@ namespace NodeNetwork.ViewModels
 
 		public NodeViewModel()
         {
-            this.Name = "Untitled";
-            this.CanBeRemovedByUser = true;
+            Name = "Untitled";
+            CanBeRemovedByUser = true;
 
             // Setup parent relationship with inputs.
 	        Inputs.Connect().ActOnEveryObject(

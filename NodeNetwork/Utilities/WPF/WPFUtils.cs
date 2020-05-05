@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Avalonia;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media;
 
 namespace NodeNetwork.Views.Controls
 {
     public static class WPFUtils
     {
-        public static T FindParent<T>(DependencyObject childObject) where T : DependencyObject
+        public static T FindParent<T>(AvaloniaObject childObject) where T : AvaloniaObject
         {
-            DependencyObject curObj = childObject;
+            AvaloniaObject curObj = childObject;
             do
             {
                 curObj = VisualTreeHelper.GetParent(curObj);
@@ -37,7 +32,7 @@ namespace NodeNetwork.Views.Controls
             }
         }
 
-        public static IEnumerable<T> FindDescendantsOfType<T>(DependencyObject root, bool skipChildrenOnHit) where T : DependencyObject
+        public static IEnumerable<T> FindDescendantsOfType<T>(AvaloniaObject root, bool skipChildrenOnHit) where T : AvaloniaObject
         {
             int childCount = VisualTreeHelper.GetChildrenCount(root);
             for (int i = 0; i < childCount; i++)

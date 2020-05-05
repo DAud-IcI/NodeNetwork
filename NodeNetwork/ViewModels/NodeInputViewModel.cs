@@ -65,16 +65,16 @@ namespace NodeNetwork.ViewModels
         
         public NodeInputViewModel()
         {
-            this.HideEditorIfConnected = true;
+            HideEditorIfConnected = true;
 
-            this.Connections.CountChanged.Select(c => c == 0).StartWith(true)
+            Connections.CountChanged.Select(c => c == 0).StartWith(true)
                 .CombineLatest(this.WhenAnyValue(vm => vm.HideEditorIfConnected), (noConnections, hideEditorIfConnected) => !hideEditorIfConnected || noConnections)
                 .ToProperty(this, vm => vm.IsEditorVisible, out _isEditorVisible);
 
-            this.ConnectionValidator = con => new ConnectionValidationResult(true, null);
+            ConnectionValidator = con => new ConnectionValidationResult(true, null);
 
-            this.MaxConnections = 1;
-            this.PortPosition = PortPosition.Left;
+            MaxConnections = 1;
+            PortPosition = PortPosition.Left;
         }
 
         /// <summary>
